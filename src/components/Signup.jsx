@@ -141,6 +141,7 @@ class Form extends Component {
               <button type="submit">Create Account</button>
               <small>Already Have an Account?</small>
             </div>
+            <div>Animation</div>
           </form>
         </div>
       </div>

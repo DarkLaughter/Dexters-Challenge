@@ -53,10 +53,11 @@ ul.nav li a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #7725a6;
+  background-color: #258ea6;
 }
 
 .form-wrapper {
+  height: 50%;
   width: 400px;
   display: flex;
   flex-direction: column;
