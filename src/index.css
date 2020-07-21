@@ -2,6 +2,20 @@
   background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2013/07/12/117346/15326c1cd78ca441d90f2baea07bd7f8-700.jpg");
 } */
 
+.App {
+  /* display: flex; */
+  /* background-image: url("https://css-tricks.com/wp-content/uploads/2017/05/grainy-texture-figure-1.png"); */
+  display: flex;
+  flex-direction: column;
+  /* margin: 0;
+  padding: 0; */
+  background-color: rgb(109, 109, 109);
+}
+
+.Navbar {
+  position: relative;
+}
+
 ul.nav {
   list-style-type: none;
   margin: 0;
@@ -28,24 +42,6 @@ ul.nav li a:hover {
   background-color: rgb(157, 7, 7);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
-
-.catrow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: space-around;
-}
-
-.cattile {
-  display: flex;
-  align-content: space-around;
-}
-
 .wrapper {
   height: 100vh;
   width: 100%;
@@ -53,12 +49,12 @@ ul.nav li a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #258ea6;
 }
 
 .form-wrapper {
-  height: 50%;
+  /* height: 50%; */
   width: 400px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
@@ -116,12 +112,12 @@ input.error {
   margin-right: 1%;
 }
 
-.lastName {
+.username {
   margin-left: 1%;
 }
 
 .name,
-.lastName,
+.username,
 .email,
 .password {
   display: flex;
@@ -130,8 +126,16 @@ input.error {
 }
 
 .name,
-.lastName {
+.username {
   width: 49%;
+}
+
+.loginName {
+  width: 100%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .email,
@@ -147,7 +151,7 @@ input.error {
 }
 
 .createAccount button {
-  background-color: #519e8a;
+  background-color: #54116e;
   color: #fff;
   border: 2px solid #fff;
   width: 100%;
@@ -160,12 +164,77 @@ input.error {
 }
 
 .createAccount button:hover {
-  color: #519e8a;
+  color: #54116e;
   background-color: #fff;
-  border: 2px solid #519e8a;
+  border: 2px solid #54116e;
 }
 
 .createAccount small {
   color: #999;
   font-weight: lighter;
+}
+
+.quiz-wrapper {
+  /* height: 50%; */
+  width: 400px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #ffffff;
+}
+
+.profileBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 120vh;
+}
+
+.container {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid Black; */
+  overflow: scroll;
+}
+
+.catContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.catrow {
+  margin: 20px;
+  padding: 20px;
+  height: 150px;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid yellow;
+}
+
+.catName {
+  flex-basis: 30%;
+}
+
+.cattile {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 150px;
+  background-color: teal;
+  justify-content: center;
+  border: 2px solid Black;
+  border-radius: 5px;
+  align-items: center;
 }

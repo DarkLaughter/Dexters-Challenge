@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -17,31 +18,76 @@ const formValid = ({ formErrors, ...rest }) => {
 
 class Form extends Component {
   state = {
+    hasaccount: false,
     name: null,
-    lastName: null,
+    username: null,
     email: null,
     password: null,
     formErrors: {
       name: "",
-      lastName: "",
+      username: "",
       email: "",
       password: "",
     },
   };
+
+  loginSubmit = (e) => {
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((r) => r.json())
+      .then(this.handleResponse);
+  };
+
+  createSubmit = (e) => {
+    fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((r) => r.json())
+      .then(this.handleResponse);
+  };
+
+  handleResponse = (resp) => {
+    if (resp.user) {
+      localStorage.token = resp.token;
+      this.setState(resp, () => {
+        this.props.history.push("/profile");
+      });
+    } else {
+      alert(resp.error);
+    }
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
     if (formValid(this.state)) {
-      console.log(`
-        --SUBMITTING--
-        First Name: ${this.state.name}
-        Last Name: ${this.state.lastName}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-      `);
+      fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(this.state),
+      })
+        .then((r) => r.json())
+        .then(console.log);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
+  };
+
+  hasLogin = () => {
+    this.setState({
+      hasaccount: !this.state.hasaccount,
+    });
   };
 
   handleChange = (e) => {
@@ -54,8 +100,8 @@ class Form extends Component {
         formErrors.name =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "lastName":
-        formErrors.lastName =
+      case "username":
+        formErrors.username =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "email":
@@ -71,56 +117,29 @@ class Form extends Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    this.setState({ formErrors, [name]: value });
   };
 
   render() {
     const { formErrors } = this.state;
-    return (
-      <div className="wrapper">
-        <div className="form-wrapper">
-          <h1>Sign Up</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="name">
-              <label htmlFor="name">Name</label>
+
+    if (this.state.hasaccount) {
+      return (
+        <div className="wrapper">
+          <div className="form-wrapper">
+            <h1> Login </h1>
+            <div className="loginName">
+              <label htmlFor="username">Username</label>
               <input
-                className={formErrors.name.length > 0 ? "error" : null}
-                placeholder="Name"
-                type="text"
-                name="name"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.name.length > 0 && (
-                <span className="errorMessage">{formErrors.name}</span>
-              )}
-            </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Username</label>
-              <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
+                className={formErrors.username.length > 0 ? "error" : null}
                 placeholder="Username"
                 type="text"
-                name="lastName"
+                name="username"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
-              )}
-            </div>
-            <div className="email">
-              <label htmlFor="email">Email</label>
-              <input
-                className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="Email"
-                type="email"
-                name="email"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
+              {formErrors.username.length > 0 && (
+                <span className="errorMessage">{formErrors.username}</span>
               )}
             </div>
             <div className="password">
@@ -133,20 +152,91 @@ class Form extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.password.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
             </div>
-            <div className="createAccount">
-              <button type="submit">Create Account</button>
-              <small>Already Have an Account?</small>
-            </div>
-            <div>Animation</div>
-          </form>
+            {formErrors.password.length > 0 && (
+              <span className="errorMessage">{formErrors.password}</span>
+            )}
+            <button onClick={this.loginSubmit}>Log In </button>
+            <small onClick={this.hasLogin}>Sign up</small>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="wrapper">
+          <div className="form-wrapper">
+            <h1>Sign Up</h1>
+            <form onSubmit={this.handleSubmit} noValidate>
+              <div className="name">
+                <label htmlFor="name">Name</label>
+                <input
+                  className={formErrors.name.length > 0 ? "error" : null}
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.name.length > 0 && (
+                  <span className="errorMessage">{formErrors.name}</span>
+                )}
+              </div>
+              <div className="username">
+                <label htmlFor="username">Username</label>
+                <input
+                  className={formErrors.username.length > 0 ? "error" : null}
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.username.length > 0 && (
+                  <span className="errorMessage">{formErrors.username}</span>
+                )}
+              </div>
+              <div className="email">
+                <label htmlFor="email">Email</label>
+                <input
+                  className={formErrors.email.length > 0 ? "error" : null}
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.email.length > 0 && (
+                  <span className="errorMessage">{formErrors.email}</span>
+                )}
+              </div>
+              <div className="password">
+                <label htmlFor="password">Password</label>
+                <input
+                  className={formErrors.password.length > 0 ? "error" : null}
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.password.length > 0 && (
+                  <span className="errorMessage">{formErrors.password}</span>
+                )}
+              </div>
+              <div className="createAccount">
+                <button type="submit" onClick={this.createSubmit}>
+                  Create Account
+                </button>
+                <small onClick={this.hasLogin}>Have An account</small>
+                <div>Animation</div>
+              </div>
+            </form>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
-export default Form;
+let MagicalComponent = withRouter(Form);
+export default MagicalComponent;

@@ -1,26 +1,46 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+
+import { NavLink, withRouter } from "react-router-dom";
 
 function NavBar(props) {
-  return (
-    <header>
-      <h1>Hello</h1>
-      <ul className="nav">
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/quizzes">Quizzes</NavLink>
-        </li>
-        <li>
-          <NavLink to="/profile">Profile</NavLink>
-        </li>
-      </ul>
-    </header>
-  );
+  let handleLogout = () => {
+    localStorage.token = "";
+    props.history.push("/");
+  };
+
+  let token = localStorage.token;
+
+  if (token !== "") {
+    return (
+      <div className="Navbar">
+        <ul className="nav">
+          <li>LOGO</li>
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
+          </li>
+          <li>
+            <NavLink to="/quizzes">Quizzes</NavLink>
+          </li>
+          <li>
+            <NavLink onClick={() => handleLogout()} to="">
+              Logout
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div className="Navbar">
+        <ul className="nav">
+          <li>
+            <NavLink to="/">Please Log In</NavLink>
+          </li>
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default NavBar;
+let MagicalComponent = withRouter(NavBar);
+export default MagicalComponent;

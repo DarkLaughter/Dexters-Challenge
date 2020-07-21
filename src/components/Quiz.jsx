@@ -1,4 +1,17 @@
 import React from "react";
+import styled from "styled-components";
+import { withRouter } from "react-router-dom";
+
+const Button = styled.button`
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: transparent;
+  color: black;
+  border: 2px solid Black;
+`;
 
 class Quiz extends React.Component {
   state = {
@@ -12,12 +25,31 @@ class Quiz extends React.Component {
     qnums: 0,
   };
 
+  resultSubmit = (newRating) => {
+    fetch(`http://localhost:4000/results/`, {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.token,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        num_correct: this.state.score,
+        num_incorrect: this.state.qnums - this.state.score,
+        quiz_id: this.state.quizID,
+      }),
+    })
+      .then((r) => r.json())
+      .then((resp) => {
+        this.props.history.push("/quizzes");
+      });
+  };
+
   loadQuiz = () => {
     const id = this.props.match.params.id;
-    let arr = [];
-    fetch(`http://localhost:3000/quizzes/${id}`)
+    fetch(`http://localhost:4000/quizzes/${id}`)
       .then((r) => r.json())
       .then((quizPojo) => {
+        let arr = [];
         arr.push(
           quizPojo.questions[this.state.currentQuestion].correct,
           quizPojo.questions[this.state.currentQuestion].incorrect1,
@@ -32,13 +64,13 @@ class Quiz extends React.Component {
           answer: quizPojo.questions[this.state.currentQuestion].correct,
           qnums: quizPojo.questions.length,
           options: arr,
+          quizID: id,
         });
       });
   };
 
   componentDidMount() {
     this.loadQuiz();
-    debugger;
   }
 
   nextQuestionHandler = () => {
@@ -55,8 +87,9 @@ class Quiz extends React.Component {
     this.setState({
       currentQuestion: this.state.currentQuestion + 1,
     });
-    console.log(this.state.currentQuestion);
-    console.log(this.state.qnums);
+    // console.log(this.state.currentQuestion);
+    // console.log(this.state.qnums);
+    // console.log(this.props);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,6 +101,7 @@ class Quiz extends React.Component {
   checkAnswer = (answer) => {
     this.setState({ myAnswer: answer, disabled: false });
   };
+
   finishHandler = () => {
     console.log(this.state.currentQuestion);
     console.log(this.state.qnums);
@@ -79,35 +113,30 @@ class Quiz extends React.Component {
     if (this.state.myAnswer === this.state.answer) {
       this.setState({
         score: this.state.score + 1,
+        disabled: !this.state.disabled,
       });
     }
   };
+
   render() {
     const { options, myAnswer, currentQuestion, isEnd } = this.state;
     if (isEnd) {
       return (
-        <div className="">
+        <div className="wrapper">
           <h3>Game Over your Final score is {this.state.score} points </h3>
-          {/* <div>
-            The correct answer's for the questions was
-            <ul>
-              {quizData.map((item, index) => (
-                <li className="ui floating message options" key={index}>
-                  {item.answer}
-                </li>
-              ))}
-            </ul>
-          </div> */}
+          <button onClick={this.resultSubmit}>Back to Quizzes</button>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className="wrapper">
           <h1>{this.state.questions} </h1>
-          <span>{`Questions ${currentQuestion}  out of ${this.state.qnums} remaining `}</span>
+          <span>{`Question ${currentQuestion + 1}  out of ${
+            this.state.qnums
+          } `}</span>
 
           {options.map((option) => (
-            <p
+            <Button
               key={option}
               className={`ui floating message options
          ${myAnswer === option ? "selected" : null}
@@ -115,7 +144,7 @@ class Quiz extends React.Component {
               onClick={() => this.checkAnswer(option)}
             >
               {option}
-            </p>
+            </Button>
           ))}
           {currentQuestion < this.state.qnums - 1 && (
             <button
@@ -138,4 +167,5 @@ class Quiz extends React.Component {
   }
 }
 
-export default Quiz;
+let MagicalComponent = withRouter(Quiz);
+export default MagicalComponent;
