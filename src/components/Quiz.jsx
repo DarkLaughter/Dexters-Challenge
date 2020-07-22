@@ -13,6 +13,39 @@ const Button = styled.button`
   border: 2px solid Black;
 `;
 
+const QuizBody = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Next = styled.button`
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 5rem;
+  background: purple;
+  color: black;
+  border: 2px solid Black;
+`;
+
+const QuizCapsule = styled.div`
+  margin: 20px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #ffffff;
+`;
+
 class Quiz extends React.Component {
   state = {
     currentQuestion: 0,
@@ -122,46 +155,49 @@ class Quiz extends React.Component {
     const { options, myAnswer, currentQuestion, isEnd } = this.state;
     if (isEnd) {
       return (
-        <div className="wrapper">
-          <h3>Game Over your Final score is {this.state.score} points </h3>
-          <button onClick={this.resultSubmit}>Back to Quizzes</button>
-        </div>
+        <QuizBody>
+          <QuizCapsule>
+            <h3>Game Over your Final score is {this.state.score} points </h3>
+            <button onClick={this.resultSubmit}>Back to Quizzes</button>
+          </QuizCapsule>
+        </QuizBody>
       );
     } else {
       return (
-        <div className="wrapper">
-          <h1>{this.state.questions} </h1>
-          <span>{`Question ${currentQuestion + 1}  out of ${
-            this.state.qnums
-          } `}</span>
+        <QuizBody>
+          <QuizCapsule>
+            <h3>{this.state.questions} </h3>
+            <span>{`Question ${currentQuestion + 1}  out of ${
+              this.state.qnums
+            } `}</span>
 
-          {options.map((option) => (
-            <Button
-              key={option}
-              className={`ui floating message options
+            {options.map((option) => (
+              <Button
+                key={option}
+                className={`ui floating message options
          ${myAnswer === option ? "selected" : null}
          `}
-              onClick={() => this.checkAnswer(option)}
-            >
-              {option}
-            </Button>
-          ))}
-          {currentQuestion < this.state.qnums - 1 && (
-            <button
-              className=""
-              disabled={this.state.disabled}
-              onClick={this.nextQuestionHandler}
-            >
-              Next
-            </button>
-          )}
-          {/* //adding a finish button */}
-          {currentQuestion === this.state.qnums - 1 && (
-            <button className="" onClick={this.finishHandler}>
-              Finish
-            </button>
-          )}
-        </div>
+                onClick={() => this.checkAnswer(option)}
+              >
+                {option}
+              </Button>
+            ))}
+            {currentQuestion < this.state.qnums - 1 && (
+              <Next
+                disabled={this.state.disabled}
+                onClick={this.nextQuestionHandler}
+              >
+                Next
+              </Next>
+            )}
+            {/* //adding a finish button */}
+            {currentQuestion === this.state.qnums - 1 && (
+              <button className="" onClick={this.finishHandler}>
+                Finish
+              </button>
+            )}
+          </QuizCapsule>
+        </QuizBody>
       );
     }
   }

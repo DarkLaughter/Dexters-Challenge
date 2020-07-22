@@ -6,11 +6,19 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Quiz from "./components/Quiz";
 import NotFound from "./components/NotFound";
+import styled from "styled-components";
+
+const APP = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <APP>
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -19,7 +27,7 @@ class App extends React.Component {
           <Route exact path="/profile" component={Profile} />
           <Route render={() => <NotFound />} />
         </Switch>
-      </div>
+      </APP>
     );
   }
 }

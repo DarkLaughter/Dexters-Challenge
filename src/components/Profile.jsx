@@ -1,4 +1,33 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const ProfileCard = styled.div`
+  margin: 20px;
+  width: 850px;
+  height: 500px;
+  display: flex;
+  flex-basis: 30%;
+  flex-direction: column;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 10px 10px 50px #555;
+  background-color: #ffffff;
+`;
+
+const StatCard = styled.div`
+  margin: 20px;
+  width: 850px;
+  height: 850px;
+  display: flex;
+  flex-basis: 30%;
+  flex-direction: column;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 10px 10px 50px #555;
+  background-color: #ffffff;
+`;
 
 class Profile extends Component {
   state = {
@@ -101,9 +130,9 @@ class Profile extends Component {
 
     if (update) {
       return (
-        <>
-          <div>
-            <h1>Stats Card</h1>
+        <div className="profileBox">
+          <ProfileCard>
+            <h1>Profile Information</h1>
             <form>
               <label>Name</label>
               <input
@@ -113,12 +142,14 @@ class Profile extends Component {
                 onChange={this.handleInput}
               />
               <label>Username</label>
+              <br />
               <input
                 value={this.state.username}
                 name="username"
                 type="text"
                 onChange={this.handleInput}
               />
+              <br />
 
               <label>Email</label>
               <input
@@ -139,8 +170,8 @@ class Profile extends Component {
               <button onClick={this.handleUpdateSubmit}>Update</button>
               <button onClick={this.handleUpdate}>Nevermind</button>
             </form>
-          </div>
-          <div>
+          </ProfileCard>
+          <StatCard>
             <h1>Your Current Stats</h1>
             <h3>Quizzes</h3>
             <p>Total Number of Quizzes Taken: {totalqstaken}</p>
@@ -151,20 +182,20 @@ class Profile extends Component {
             <h3>Ratings</h3>
             <p>You've rated {numquizzesrated} of qquizzes</p>
             <p>The average Rating you've given a quiz: {avg_qrating}</p>
-          </div>
-        </>
+          </StatCard>
+        </div>
       );
     } else {
       return (
         <div className="profileBox">
-          <div>
+          <ProfileCard>
             <h1>Profile</h1>
-            <h1>Name:{name}</h1>
-            <h1>Username:{username}</h1>
-            <h1>Email:{email}</h1>
+            <h3>Name:{name}</h3>
+            <h3>Username:{username}</h3>
+            <h3>Email:{email}</h3>
             <button onClick={this.handleUpdate}>Update Your Information</button>
-          </div>
-          <div>
+          </ProfileCard>
+          <StatCard>
             <h1>Your Current Stats</h1>
             <h3>Quizzes</h3>
             <p>Total Number of Quizzes Taken: {totalqstaken}</p>
@@ -175,7 +206,7 @@ class Profile extends Component {
             <h3>Ratings</h3>
             <p>You've rated {numquizzesrated} of quizzes</p>
             <p>The average Rating you've given a quiz: {avg_qrating}</p>
-          </div>
+          </StatCard>
         </div>
       );
     }

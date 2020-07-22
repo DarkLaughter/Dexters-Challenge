@@ -1,10 +1,25 @@
 import React from "react";
 import Categories from "./Categories";
+import Search from "./Search";
 
 class Container extends React.Component {
   state = {
     categories: [],
     ratingupdate: false,
+    query: "",
+  };
+
+  handleInputChange = (searchText) => {
+    this.setState({
+      query: searchText,
+    });
+  };
+
+  returnArray = () => {
+    let array = this.state.categories.filter((cat) =>
+      cat.name.toLowerCase().includes(this.state.query.toLowerCase())
+    );
+    return array;
   };
 
   componentDidMount() {
@@ -39,7 +54,8 @@ class Container extends React.Component {
   };
 
   render() {
-    const catBars = this.state.categories.map((catPojo, index) => {
+    let catArray = this.returnArray();
+    const catBars = catArray.map((catPojo, index) => {
       return (
         <Categories
           handleNewRating={this.handleNewRating}
@@ -51,8 +67,11 @@ class Container extends React.Component {
     });
     return (
       <div className="container">
-        <div>
-          <h1>Search Bar</h1>
+        <div className="search">
+          <Search
+            handleInputChange={this.handleInputChange}
+            query={this.state.query}
+          />
         </div>
         <div className="catContainer">{catBars}</div>
       </div>
