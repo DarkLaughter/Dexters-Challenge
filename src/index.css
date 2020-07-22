@@ -1,3 +1,7 @@
+body {
+  background-image: url("https://images-na.ssl-images-amazon.com/images/I/A1mzBjfOVqL._AC_SX466_.jpg");
+}
+
 .wrapper {
   height: 80vh;
   width: 100%;
@@ -176,6 +180,8 @@ input.error {
   align-items: center;
   border: 2px solid rgb(33, 50, 148);
   border-radius: 10px;
+  background-color: rgb(223, 220, 215);
+  opacity: 0.92;
 }
 
 .catName {
@@ -188,7 +194,8 @@ input.error {
   flex-direction: column;
   height: 150px;
   width: 200px;
-  background-color: rgb(214, 150, 242);
+  color: white;
+  background-color: #54116e;
   justify-content: center;
   border: 2px solid Black;
   border-radius: 10px;

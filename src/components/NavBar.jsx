@@ -45,7 +45,11 @@ function NavBar(props) {
     return (
       <Nav>
         <ul className="nav">
-          <li>LOGO</li>
+          <img
+            src="https://egamersworld.com/uploads/dota2/teams/moogle-logo.png"
+            alt="Moogle"
+            height="100px"
+          />
           <li>
             <NavLink to="/profile">Profile</NavLink>
           </li>

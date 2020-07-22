@@ -13,6 +13,7 @@ const ProfileCard = styled.div`
   align-items: center;
   box-shadow: 10px 10px 50px #555;
   background-color: #ffffff;
+  opacity: 0.92;
 `;
 
 const StatCard = styled.div`
@@ -27,6 +28,7 @@ const StatCard = styled.div`
   align-items: center;
   box-shadow: 10px 10px 50px #555;
   background-color: #ffffff;
+  opacity: 0.92;
 `;
 
 class Profile extends Component {

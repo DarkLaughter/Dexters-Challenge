@@ -28,9 +28,9 @@ const Next = styled.button`
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 5rem;
-  background: purple;
-  color: black;
-  border: 2px solid Black;
+  background: #54116e;
+  color: white;
+  border: 2px solid white;
 `;
 
 const QuizCapsule = styled.div`
