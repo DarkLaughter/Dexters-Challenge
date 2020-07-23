@@ -4,6 +4,7 @@ import { NavLink, withRouter } from "react-router-dom";
 
 const Nav = styled.div`
   position: relative;
+  right: 10px;
 
   ul.nav {
     list-style-type: none;
@@ -48,7 +49,7 @@ function NavBar(props) {
           <img
             src="https://egamersworld.com/uploads/dota2/teams/moogle-logo.png"
             alt="Moogle"
-            height="100px"
+            height="80px"
           />
           <li>
             <NavLink to="/profile">Profile</NavLink>

@@ -34,7 +34,7 @@ const Categorytiles = (props) => {
   } else {
     return (
       <div className="cattile">
-        <p>Overall Rating:{props.rating} </p>
+        <p>Overall Rating: {props.rating} </p>
         <ReactStars
           count={5}
           onChange={ratingChanged}

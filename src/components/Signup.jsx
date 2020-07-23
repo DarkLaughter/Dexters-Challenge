@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -157,7 +157,7 @@ class Form extends Component {
               <span className="errorMessage">{formErrors.password}</span>
             )}
             <button onClick={this.loginSubmit}>Log In </button>
-            <small onClick={this.hasLogin}>Sign up</small>
+            <Link onClick={this.hasLogin}>Click to Sign Up</Link>
           </div>
         </div>
       );
@@ -227,7 +227,7 @@ class Form extends Component {
                 <button type="submit" onClick={this.createSubmit}>
                   Create Account
                 </button>
-                <small onClick={this.hasLogin}>Have An account</small>
+                <Link onClick={this.hasLogin}>Have an account</Link>
                 <div>Animation</div>
               </div>
             </form>

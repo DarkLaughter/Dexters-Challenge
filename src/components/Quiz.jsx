@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+// import Timer from "./Timer";
 
 const Button = styled.button`
   display: inline-block;
@@ -23,6 +24,17 @@ const QuizBody = styled.div`
 `;
 
 const Next = styled.button`
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 5rem;
+  background: #54116e;
+  color: white;
+  border: 2px solid white;
+`;
+
+const Finish = styled.button`
   display: inline-block;
   border-radius: 20px;
   padding: 0.5rem 0;
@@ -56,6 +68,7 @@ class Quiz extends React.Component {
     isEnd: false,
     quizID: 0,
     qnums: 0,
+    count: 90,
   };
 
   resultSubmit = (newRating) => {
@@ -69,6 +82,7 @@ class Quiz extends React.Component {
         num_correct: this.state.score,
         num_incorrect: this.state.qnums - this.state.score,
         quiz_id: this.state.quizID,
+        time: this.state.count,
       }),
     })
       .then((r) => r.json())
@@ -104,10 +118,12 @@ class Quiz extends React.Component {
 
   componentDidMount() {
     this.loadQuiz();
+    this.myInterval = setInterval(() => {
+      this.setState({ count: this.state.count - 1 });
+    }, 1000);
   }
 
   nextQuestionHandler = () => {
-    // console.log('test')
     const { myAnswer, answer, score } = this.state;
 
     if (myAnswer === answer) {
@@ -130,7 +146,7 @@ class Quiz extends React.Component {
       this.loadQuiz();
     }
   }
-  //check answer
+
   checkAnswer = (answer) => {
     this.setState({ myAnswer: answer, disabled: false });
   };
@@ -139,6 +155,7 @@ class Quiz extends React.Component {
     console.log(this.state.currentQuestion);
     console.log(this.state.qnums);
     if (this.state.currentQuestion === this.state.qnums - 1) {
+      clearInterval(this.myInterval);
       this.setState({
         isEnd: true,
       });
@@ -153,11 +170,13 @@ class Quiz extends React.Component {
 
   render() {
     const { options, myAnswer, currentQuestion, isEnd } = this.state;
+    const timer = this.state.count;
     if (isEnd) {
       return (
         <QuizBody>
           <QuizCapsule>
             <h3>Game Over your Final score is {this.state.score} points </h3>
+            <h3>{this.state.count}</h3>
             <button onClick={this.resultSubmit}>Back to Quizzes</button>
           </QuizCapsule>
         </QuizBody>
@@ -166,6 +185,7 @@ class Quiz extends React.Component {
       return (
         <QuizBody>
           <QuizCapsule>
+            <h1>{timer}</h1>
             <h3>{this.state.questions} </h3>
             <span>{`Question ${currentQuestion + 1}  out of ${
               this.state.qnums
@@ -192,9 +212,7 @@ class Quiz extends React.Component {
             )}
             {/* //adding a finish button */}
             {currentQuestion === this.state.qnums - 1 && (
-              <button className="" onClick={this.finishHandler}>
-                Finish
-              </button>
+              <Finish onClick={this.finishHandler}>All Done</Finish>
             )}
           </QuizCapsule>
         </QuizBody>

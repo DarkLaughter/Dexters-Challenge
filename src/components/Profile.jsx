@@ -14,6 +14,8 @@ const ProfileCard = styled.div`
   box-shadow: 10px 10px 50px #555;
   background-color: #ffffff;
   opacity: 0.92;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const StatCard = styled.div`
@@ -29,6 +31,8 @@ const StatCard = styled.div`
   box-shadow: 10px 10px 50px #555;
   background-color: #ffffff;
   opacity: 0.92;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 class Profile extends Component {
@@ -46,6 +50,7 @@ class Profile extends Component {
     totalAnsincorrect: 0,
     questionPercentage: 0,
     totalquestions: 0,
+    avgtime: 0,
   };
 
   handleUpdateSubmit = (e) => {
@@ -77,7 +82,6 @@ class Profile extends Component {
     this.setState({
       update: !this.state.update,
     });
-    console.log(this.state.update);
   };
 
   handleInput = (e) => {
@@ -107,10 +111,11 @@ class Profile extends Component {
             numquizzesrated: resp.user.numquizzesrated,
             avg_qrating: resp.user.avg_qrating,
             totalqstaken: resp.user.totalqstaken,
-            totalAnscorrect: resp.user.totalAnsincorrect,
+            totalAnscorrect: resp.user.totalAnscorrect,
             totalAnsincorrect: resp.user.totalAnsincorrect,
             questionPercentage: resp.user.questionPercentage,
             totalquestions: resp.user.totalquestions,
+            avgtime: resp.user.avgTime,
           });
         });
     }
@@ -128,14 +133,15 @@ class Profile extends Component {
       totalAnsincorrect,
       questionPercentage,
       totalquestions,
+      avgtime,
     } = this.state;
-
+    console.log(this.state);
     if (update) {
       return (
         <div className="profileBox">
           <ProfileCard>
             <h1>Profile Information</h1>
-            <form>
+            <form className="pform">
               <label>Name</label>
               <input
                 value={this.state.name}
@@ -180,7 +186,7 @@ class Profile extends Component {
             <p>Total Correct Answers: {totalAnscorrect}</p>
             <p>Total Incorrect Answer: {totalAnsincorrect}</p>
             <p>Total Questions you've answered: {totalquestions}</p>
-            <p>Your Overall Percentage is: {questionPercentage}</p>
+            <p>Your Trivia Percentage is: {questionPercentage}</p>
             <h3>Ratings</h3>
             <p>You've rated {numquizzesrated} of qquizzes</p>
             <p>The average Rating you've given a quiz: {avg_qrating}</p>
@@ -192,9 +198,9 @@ class Profile extends Component {
         <div className="profileBox">
           <ProfileCard>
             <h1>Profile</h1>
-            <h3>Name:{name}</h3>
-            <h3>Username:{username}</h3>
-            <h3>Email:{email}</h3>
+            <h3>Name: {name}</h3>
+            <h3>Username: {username}</h3>
+            <h3>Email: {email}</h3>
             <button onClick={this.handleUpdate}>Update Your Information</button>
           </ProfileCard>
           <StatCard>
@@ -204,7 +210,8 @@ class Profile extends Component {
             <p>Total Correct Answers: {totalAnscorrect}</p>
             <p>Total Incorrect Answer: {totalAnsincorrect}</p>
             <p>Total Questions you've answered: {totalquestions}</p>
-            <p>Your Overall Percentage is: {questionPercentage}% </p>
+            <p>Avg Time Per Quiz: {avgtime} Seconds </p>
+            <p>Trivia Answer Percentage is: {questionPercentage}% </p>
             <h3>Ratings</h3>
             <p>You've rated {numquizzesrated} of quizzes</p>
             <p>The average Rating you've given a quiz: {avg_qrating}</p>
