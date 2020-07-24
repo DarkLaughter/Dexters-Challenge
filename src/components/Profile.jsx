@@ -139,55 +139,63 @@ class Profile extends Component {
     if (update) {
       return (
         <div className="profileBox">
-          <ProfileCard>
-            <h1>Profile Information</h1>
-            <form className="pform">
-              <label>Name</label>
-              <input
-                value={this.state.name}
-                name="name"
-                type="text"
-                onChange={this.handleInput}
-              />
-              <label>Username</label>
+          <div className="profile-wrapper">
+            <h2>Profile Information</h2>
+            <form onSubmit={this.handleUpdateSubmit} noValidate>
+              <div className="name">
+                <label htmlFor="name">Name</label>
+                <input
+                  value={this.state.name}
+                  name="name"
+                  type="text"
+                  onChange={this.handleInput}
+                />
+              </div>
+              <div className="username">
+                <label htmlFor="username">Username</label>
+
+                <input
+                  value={this.state.username}
+                  name="username"
+                  type="text"
+                  onChange={this.handleInput}
+                />
+              </div>
+
+              <div className="email">
+                <label htmlFor="email">Email</label>
+                <input
+                  value={this.state.email}
+                  name="email"
+                  type="email"
+                  onChange={this.handleInput}
+                />
+              </div>
+
+              <div className="password">
+                <label htmlFor="password">Password</label>
+                <input
+                  value={this.state.password}
+                  name="password"
+                  type="password"
+                  onChange={this.handleInput}
+                />
+              </div>
+              <button>Update</button>
               <br />
-              <input
-                value={this.state.username}
-                name="username"
-                type="text"
-                onChange={this.handleInput}
-              />
-              <br />
-
-              <label>Email</label>
-              <input
-                value={this.state.email}
-                name="email"
-                type="email"
-                onChange={this.handleInput}
-              />
-
-              <label>Password</label>
-              <input
-                value={this.state.password}
-                name="password"
-                type="password"
-                onChange={this.handleInput}
-              />
-
-              <button onClick={this.handleUpdateSubmit}>Update</button>
               <button onClick={this.handleUpdate}>Nevermind</button>
             </form>
-          </ProfileCard>
+          </div>
+
           <StatCard>
             <h1>Your Current Stats</h1>
-            <h3>Quizzes</h3>
+            <h2>Quizzes</h2>
             <p>Total Number of Quizzes Taken: {totalqstaken}</p>
             <p>Total Correct Answers: {totalAnscorrect}</p>
             <p>Total Incorrect Answer: {totalAnsincorrect}</p>
             <p>Total Questions you've answered: {totalquestions}</p>
             <p>Your Trivia Percentage is: {questionPercentage}</p>
-            <h3>Ratings</h3>
+            <h2>Ratings</h2>
             <p>You've rated {numquizzesrated} of qquizzes</p>
             <p>The average Rating you've given a quiz: {avg_qrating}</p>
           </StatCard>
@@ -197,7 +205,7 @@ class Profile extends Component {
       return (
         <div className="profileBox">
           <ProfileCard>
-            <h1>Profile</h1>
+            <h2>Profile</h2>
             <h3>Name: {name}</h3>
             <h3>Username: {username}</h3>
             <h3>Email: {email}</h3>

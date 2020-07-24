@@ -165,7 +165,7 @@ class Form extends Component {
       return (
         <div className="wrapper">
           <div className="form-wrapper">
-            <h1>Sign Up</h1>
+            <h2>Sign Up</h2>
             <form onSubmit={this.handleSubmit} noValidate>
               <div className="name">
                 <label htmlFor="name">Name</label>

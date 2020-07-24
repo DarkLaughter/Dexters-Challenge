@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, withRouter } from "react-router-dom";
+import Logo from "../images/dexchallenge.png";
 
 const Nav = styled.div`
-  position: relative;
   right: 10px;
+  margin: 0;
 
   ul.nav {
     list-style-type: none;
@@ -13,7 +14,7 @@ const Nav = styled.div`
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
-    background-color: #54116e;
+    background-color: #006277;
   }
 
   ul.nav li {
@@ -46,11 +47,7 @@ function NavBar(props) {
     return (
       <Nav>
         <ul className="nav">
-          <img
-            src="https://egamersworld.com/uploads/dota2/teams/moogle-logo.png"
-            alt="Moogle"
-            height="80px"
-          />
+          <img src={Logo} alt="Moogle" height="80px" />
           <li>
             <NavLink to="/profile">Profile</NavLink>
           </li>
