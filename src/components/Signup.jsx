@@ -127,7 +127,7 @@ class Form extends Component {
       return (
         <div className="wrapper">
           <div className="form-wrapper">
-            <h1> Login </h1>
+            <h2> Login </h2>
             <div className="loginName">
               <label htmlFor="username">Username</label>
               <input
@@ -156,8 +156,10 @@ class Form extends Component {
             {formErrors.password.length > 0 && (
               <span className="errorMessage">{formErrors.password}</span>
             )}
-            <button onClick={this.loginSubmit}>Log In </button>
-            <Link onClick={this.hasLogin}>Click to Sign Up</Link>
+            <div className="createAccount">
+              <button onClick={this.loginSubmit}>Log In </button>
+              <Link onClick={this.hasLogin}>Click to Sign Up</Link>
+            </div>
           </div>
         </div>
       );
@@ -227,7 +229,7 @@ class Form extends Component {
                 <button type="submit" onClick={this.createSubmit}>
                   Create Account
                 </button>
-                <Link onClick={this.hasLogin}>Have an account</Link>
+                <Link onClick={this.hasLogin}>Click Here to Log In</Link>
                 <div>Animation</div>
               </div>
             </form>

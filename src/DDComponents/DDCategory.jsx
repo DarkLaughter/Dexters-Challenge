@@ -1,8 +1,8 @@
 import React from "react";
-import Categorytiles from "./Categorytiles";
+import Categorytiles from "./DDtiles";
 import Mandark from "../images/md.png";
 
-const Categories = (props) => {
+const DDCategories = (props) => {
   const arrayOfCatTiles = props.quizInfo.map((quizPojo, index) => {
     return (
       <Categorytiles
@@ -26,4 +26,4 @@ const Categories = (props) => {
   );
 };
 
-export default Categories;
+export default DDCategories;

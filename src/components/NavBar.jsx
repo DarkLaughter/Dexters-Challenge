@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, withRouter } from "react-router-dom";
-import Logo from "../images/dexchallenge.png";
+import Dexter from "../images/dex.png";
+import Logo from "../images/dexterlogo.png";
 
 const Nav = styled.div`
   right: 10px;
@@ -9,7 +10,7 @@ const Nav = styled.div`
 
   ul.nav {
     list-style-type: none;
-    margin: 0;
+    margin: 10px;
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -18,12 +19,14 @@ const Nav = styled.div`
   }
 
   ul.nav li {
+    margin-top: 10px;
     float: left;
   }
 
   ul.nav li a {
     display: block;
-    color: white;
+    border-radius: 5px;
+    color: #a3cf65;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -31,7 +34,7 @@ const Nav = styled.div`
 
   ul.nav li a:hover {
     background-color: white;
-    color: #54116e;
+    color: #a3cf65;
   }
 `;
 
@@ -47,12 +50,16 @@ function NavBar(props) {
     return (
       <Nav>
         <ul className="nav">
+          <img src={Dexter} alt="" height="80px" />
           <img src={Logo} alt="Moogle" height="80px" />
           <li>
             <NavLink to="/profile">Profile</NavLink>
           </li>
           <li>
-            <NavLink to="/quizzes">Quizzes</NavLink>
+            <NavLink to="/quizzes">Mandark's Test</NavLink>
+          </li>
+          <li>
+            <NavLink to="/quizzes">Dee Dee's True-or-False</NavLink>
           </li>
           <li>
             <NavLink onClick={() => handleLogout()} to="">
@@ -67,7 +74,9 @@ function NavBar(props) {
       <Nav>
         <ul className="nav">
           <li>
-            <NavLink to="/">Please Log In</NavLink>
+            <img src={Dexter} alt="" height="80px" />
+            <img src={Logo} alt="Moogle" height="80px" />
+            {/* <NavLink to="/">Please Log In</NavLink> */}
           </li>
         </ul>
       </Nav>

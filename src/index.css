@@ -189,7 +189,8 @@ input.error {
 }
 
 .catName {
-  flex-basis: 30%;
+  flex-basis: 20%;
+  justify-content: center;
   align-content: center;
 }
 
@@ -199,7 +200,7 @@ input.error {
   height: 150px;
   width: 200px;
   color: white;
-  background-color: #54116e;
+  background-color: #006277;
   justify-content: center;
   border: 2px solid Black;
   border-radius: 10px;
@@ -235,4 +236,12 @@ body {
   text-align: center;
   width: 100%;
   margin: 0 auto;
+}
+
+.button {
+  background-color: white;
+}
+
+.clicked-button {
+  background-color: rgb(170, 46, 25);
 }
