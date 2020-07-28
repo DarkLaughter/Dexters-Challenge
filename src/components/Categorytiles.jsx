@@ -26,15 +26,19 @@ const Categorytiles = (props) => {
   if (!rater) {
     return (
       <div className="cattile">
-        <p>Level {props.level}</p>
-        <button onClick={() => quizSubmit(props.id)}>Take the Quiz</button>
-        <button onClick={() => setRating(!rater)}>Rate Me</button>
+        <p className="level">Level {props.level}</p>
+        <button className="quiz" onClick={() => quizSubmit(props.id)}>
+          Take the Quiz
+        </button>
+        <button className="quiz" onClick={() => setRating(!rater)}>
+          Rate Me
+        </button>
       </div>
     );
   } else {
     return (
       <div className="cattile">
-        <p>Overall Rating: {props.rating} </p>
+        <p className="level">Overall Rating: {props.rating} </p>
         <ReactStars
           count={5}
           onChange={ratingChanged}
@@ -42,8 +46,12 @@ const Categorytiles = (props) => {
           activeColor="#ffd700"
         />
 
-        <button onClick={() => quizSubmit(props.id)}>Take the Quiz</button>
-        <button onClick={() => setRating(!rater)}>Show Level</button>
+        <button className="quiz" onClick={() => quizSubmit(props.id)}>
+          Take the Quiz
+        </button>
+        <button className="quiz" onClick={() => setRating(!rater)}>
+          Show Level
+        </button>
       </div>
     );
   }

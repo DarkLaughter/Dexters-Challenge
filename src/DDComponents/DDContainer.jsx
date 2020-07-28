@@ -1,6 +1,6 @@
 import React from "react";
-import Categories from "./Categories";
-import Search from "./Search";
+import DDCategories from "./DDCategory";
+import DDSearch from "./DDSearch";
 
 class DDContainer extends React.Component {
   state = {
@@ -27,15 +27,11 @@ class DDContainer extends React.Component {
   }
 
   loadContainer = () => {
-    fetch(`http://localhost:4000/categories`)
+    fetch(`http://localhost:4000/dcategories`)
       .then((r) => r.json())
       .then((resp) => {
-        let arr = [];
-        Object.values(resp).forEach((key) => {
-          arr.push(key);
-        });
         this.setState({
-          categories: arr,
+          categories: resp,
         });
       });
   };
@@ -50,25 +46,25 @@ class DDContainer extends React.Component {
     this.setState({
       ratingupdate: !this.state.ratingupdate,
     });
-    console.log(this.state.ratingupdate);
+    // console.log(this.state.ratingupdate);
   };
 
   render() {
     let catArray = this.returnArray();
-    const catBars = catArray.map((catPojo, index) => {
+    const catBars = catArray.map((catPojo) => {
       return (
-        <Categories
+        <DDCategories
           handleNewRating={this.handleNewRating}
-          key={index}
+          key={catPojo.id}
           title={catPojo.name}
-          quizInfo={catPojo.quizzes}
+          quizInfo={catPojo.dquizzes}
         />
       );
     });
     return (
       <div className="container">
         <div className="search">
-          <Search
+          <DDSearch
             handleInputChange={this.handleInputChange}
             query={this.state.query}
           />

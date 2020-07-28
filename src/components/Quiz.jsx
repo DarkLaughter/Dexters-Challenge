@@ -1,18 +1,19 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import Mandark from "../images/mandark.gif";
 
 // import Timer from "./Timer";
 
 const Button = styled.button`
+font-family: "Orbitron", sans-serif;
 cursor: pointer;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
-  background-color: this.state.selected ? #f4511e : #ffffff;
+  // background-color: this.state.selected ? #f4511e : #ffffff;
   color: black;
   border: 2px solid white;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -20,18 +21,6 @@ cursor: pointer;
         transform: scale(1.1);
         box-shadow: var(--diffuse-shadow);
 
-    &:target {
-      color:yellow;   
-
-      ${(props) =>
-        props.disabled
-          ? css`
-              color: #d81052;
-            `
-          : css`
-              color: green;
-            `};
-    }
 `;
 // opacity: 0.99;
 
@@ -43,15 +32,17 @@ const QuizBody = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
+  text-shadow: 0px 0px 10px black;
 `;
 
 const Next = styled.button`
+font-family: "Orbitron", sans-serif;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 5rem;
-  background-color: #f4511e;
+  
   color: black;
   border: 2px solid white;
   border-radius: 10px;
@@ -62,13 +53,13 @@ const Next = styled.button`
 `;
 
 const Finish = styled.button`
+font-family: "Orbitron", sans-serif;
 cursor: pointer;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 6rem;
-  background-color: #f4511e;
   color: black;
   border: 2px solid white;
   border-radius: 10px;
@@ -89,8 +80,23 @@ const QuizCapsule = styled.div`
   align-items: center;
   box-shadow: 0px 10px 50px #555;
   background-image: url(${Mandark});
+
   background-size: contain;
   background-size: 340px 340px;
+  opacity: 0.88;
+`;
+
+const ResultsCapsule = styled.div`
+  margin: 20px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #006277;
 `;
 
 class Quiz extends React.Component {
@@ -156,6 +162,9 @@ class Quiz extends React.Component {
     this.myInterval = setInterval(() => {
       this.setState({ count: this.state.count - 1 });
     }, 1000);
+    this.setState({
+      disabled: true,
+    });
   }
 
   nextQuestionHandler = () => {
@@ -213,11 +222,16 @@ class Quiz extends React.Component {
     if (isEnd) {
       return (
         <QuizBody>
-          <QuizCapsule>
-            <h3>Game Over your Final score is {this.state.score} points </h3>
-            <h3>{this.state.count}</h3>
-            <button onClick={this.resultSubmit}>Back to Quizzes</button>
-          </QuizCapsule>
+          <ResultsCapsule>
+            <h3>Your final score is {this.state.score} points </h3>
+            <h3>Completed in: {this.state.count} seconds</h3>
+            <Next onClick={this.resultSubmit}>Back to Quizzes</Next>
+            <img
+              src="https://i.pinimg.com/originals/db/46/d0/db46d0bd791b36ebf5bc30fe5389f3c8.gif"
+              alt="Dexter"
+              width={500}
+            />
+          </ResultsCapsule>
         </QuizBody>
       );
     } else {

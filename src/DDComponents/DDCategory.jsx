@@ -1,24 +1,25 @@
 import React from "react";
-import Categorytiles from "./DDtiles";
-import Mandark from "../images/md.png";
+import DDCategorytiles from "./DDtiles";
+import Deedee from "../images/deedee.png";
 
 const DDCategories = (props) => {
   const arrayOfCatTiles = props.quizInfo.map((quizPojo, index) => {
     return (
-      <Categorytiles
+      <DDCategorytiles
         handleNewRating={props.handleNewRating}
         key={index}
         id={quizPojo.id}
         level={quizPojo.level}
-        rating={quizPojo.quizratings}
+        rating={quizPojo.dquizratings}
       />
     );
   });
+
   return (
     <div className="catrow">
       <div className="catName">
         <h3>{props.title}</h3>
-        <img src={Mandark} alt="Mnadark" height="100px" />
+        <img src={Deedee} alt="Mnadark" height="100px" />
       </div>
 
       {arrayOfCatTiles}

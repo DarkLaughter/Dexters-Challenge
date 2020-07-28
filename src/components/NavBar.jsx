@@ -5,9 +5,6 @@ import Dexter from "../images/dex.png";
 import Logo from "../images/dexterlogo.png";
 
 const Nav = styled.div`
-  right: 10px;
-  margin: 0;
-
   ul.nav {
     list-style-type: none;
     margin: 10px;
@@ -19,7 +16,7 @@ const Nav = styled.div`
   }
 
   ul.nav li {
-    margin-top: 10px;
+    margin-top: 15px;
     float: left;
   }
 
@@ -56,10 +53,10 @@ function NavBar(props) {
             <NavLink to="/profile">Profile</NavLink>
           </li>
           <li>
-            <NavLink to="/quizzes">Mandark's Test</NavLink>
+            <NavLink to="/quizzes">Mandark's Quizzes</NavLink>
           </li>
           <li>
-            <NavLink to="/quizzes">Dee Dee's True-or-False</NavLink>
+            <NavLink to="/tof">Dee Dee's True-or-False</NavLink>
           </li>
           <li>
             <NavLink onClick={() => handleLogout()} to="">

@@ -1,18 +1,20 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import Mandark from "../images/mandark.gif";
+import DeeDee from "../images/deedee.gif";
 
 // import Timer from "./Timer";
 
 const Button = styled.button`
+
+font-family: "Orbitron", sans-serif;
 cursor: pointer;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
-  background-color: this.state.selected ? #f4511e : #ffffff;
+  // background-color: this.state.selected ? #f4511e : #ffffff;
   color: black;
   border: 2px solid white;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -20,18 +22,6 @@ cursor: pointer;
         transform: scale(1.1);
         box-shadow: var(--diffuse-shadow);
 
-    &:target {
-      color:yellow;   
-
-      ${(props) =>
-        props.disabled
-          ? css`
-              color: #d81052;
-            `
-          : css`
-              color: green;
-            `};
-    }
 `;
 // opacity: 0.99;
 
@@ -43,15 +33,17 @@ const QuizBody = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
+  text-shadow: 0px 0px 10px black;
 `;
 
 const Next = styled.button`
+font-family: "Orbitron", sans-serif;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 5rem;
-  background-color: #f4511e;
+  
   color: black;
   border: 2px solid white;
   border-radius: 10px;
@@ -62,13 +54,13 @@ const Next = styled.button`
 `;
 
 const Finish = styled.button`
+font-family: "Orbitron", sans-serif;
 cursor: pointer;
   display: inline-block;
   border-radius: 5px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 6rem;
-  background-color: #f4511e;
   color: black;
   border: 2px solid white;
   border-radius: 10px;
@@ -88,26 +80,45 @@ const QuizCapsule = styled.div`
   border-radius: 10px;
   align-items: center;
   box-shadow: 0px 10px 50px #555;
-  background-image: url(${Mandark});
+  background-image: url(${DeeDee});
+
   background-size: contain;
   background-size: 340px 340px;
+  opacity: 0.88;
+`;
+
+const ResultsCapsule = styled.div`
+  margin: 20px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #006277;
 `;
 
 class Quiz extends React.Component {
   state = {
     currentQuestion: 0,
     myAnswer: null,
-    options: [],
+    options: ["True", "False"],
     score: 0,
     disabled: true,
     isEnd: false,
     quizID: 0,
     qnums: 0,
     count: 90,
+    bgcolorOrSomething: "white",
   };
 
+  wordStyle = {
+    border: "2px solid black",
+  };
   resultSubmit = (newRating) => {
-    fetch(`http://localhost:4000/results/`, {
+    fetch(`http://localhost:4000/dresults/`, {
       method: "POST",
       headers: {
         Authorization: localStorage.token,
@@ -122,30 +133,19 @@ class Quiz extends React.Component {
     })
       .then((r) => r.json())
       .then((resp) => {
-        this.props.history.push("/quizzes");
+        this.props.history.push("/tof");
       });
   };
 
   loadQuiz = () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:4000/quizzes/${id}`)
+    fetch(`http://localhost:4000/dquizzes/${id}`)
       .then((r) => r.json())
       .then((quizPojo) => {
-        let arr = [];
-        arr.push(
-          quizPojo.questions[this.state.currentQuestion].correct,
-          quizPojo.questions[this.state.currentQuestion].incorrect1,
-          quizPojo.questions[this.state.currentQuestion].incorrect2,
-          quizPojo.questions[this.state.currentQuestion].incorrect3
-        );
-
-        arr = arr.sort(() => Math.random() - 0.5);
-
         this.setState({
-          questions: quizPojo.questions[this.state.currentQuestion].q_text,
-          answer: quizPojo.questions[this.state.currentQuestion].correct,
-          qnums: quizPojo.questions.length,
-          options: arr,
+          questions: quizPojo.dquestions[this.state.currentQuestion].q_text,
+          answer: quizPojo.dquestions[this.state.currentQuestion].correct,
+          qnums: quizPojo.dquestions.length,
           quizID: id,
         });
       });
@@ -187,7 +187,6 @@ class Quiz extends React.Component {
       myAnswer: answer,
       disabled: false,
     });
-    // this.style.backgroundColor = "rgb(" + 241 + "," + 90 + "," + 36 + ")";
   };
 
   finishHandler = () => {
@@ -213,16 +212,22 @@ class Quiz extends React.Component {
     if (isEnd) {
       return (
         <QuizBody>
-          <QuizCapsule>
-            <h3>Game Over your Final score is {this.state.score} points </h3>
+          <ResultsCapsule>
+            <h3>Great job! Your final score is {this.state.score} points </h3>
             <h3>{this.state.count}</h3>
-            <button onClick={this.resultSubmit}>Back to Quizzes</button>
-          </QuizCapsule>
+
+            <Next onClick={this.resultSubmit}>Back to True or False</Next>
+            <img
+              src="https://i.pinimg.com/originals/db/46/d0/db46d0bd791b36ebf5bc30fe5389f3c8.gif"
+              alt="Dexter"
+              width={500}
+            />
+          </ResultsCapsule>
         </QuizBody>
       );
     } else {
       return (
-        <QuizBody image={Mandark}>
+        <QuizBody image={DeeDee}>
           <QuizCapsule>
             <h1>{timer}</h1>
             <h3>{this.state.questions} </h3>

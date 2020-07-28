@@ -1,6 +1,5 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .wrapper {
@@ -36,8 +35,7 @@ h2 {
   width: 100%;
   color: #111;
   font-weight: lighter;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 label {
@@ -116,6 +114,7 @@ input.error {
   background-color: #006277;
   color: #fff;
   border: 2px solid #fff;
+  border-radius: 5px;
   width: 100%;
   margin-top: 1em;
   padding: 8px 0px;
@@ -123,6 +122,7 @@ input.error {
   font-weight: lighter;
   letter-spacing: 1px;
   margin-bottom: 0.25em;
+  font-family: "Orbitron", sans-serif;
 }
 
 .createAccount button:hover {
@@ -148,15 +148,6 @@ input.error {
   background-color: #ffffff;
 }
 
-.profileBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 120vh;
-  width: 100%;
-}
-
 .container {
   margin: 0;
   height: 100vh;
@@ -170,8 +161,6 @@ input.error {
   height: 100vh;
   display: flex;
   flex-direction: column;
-
-  justify-content: space-between;
 }
 
 .catrow {
@@ -208,6 +197,7 @@ input.error {
 }
 
 .search {
+  font-family: "Orbitron", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,16 +210,46 @@ body {
   background-size: 100% 100%;
 }
 
+.appBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.profileBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100vh;
+  min-height: 1000px;
+  padding-bottom: 15px;
+}
+
+.profileBox p {
+  margin: 5px;
+}
+
+.statsBox {
+  height: 450px;
+}
+.statsBox p {
+  margin: 5px;
+}
+
 .profile-wrapper {
   margin-top: 80px;
-  width: 800px;
+  width: 685px;
   height: 450px;
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
   border-radius: 10px;
   box-shadow: 0px 10px 50px #555;
-  background-color: #ffffff;
+  background-color: rgba(250, 250, 250, 0.92);
 }
 
 .searchBar {
@@ -239,9 +259,28 @@ body {
 }
 
 .button {
-  background-color: white;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  color: black;
+  border: 2px solid black;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.clicked-button {
-  background-color: rgb(170, 46, 25);
+.button:focus {
+  background-color: #006277;
+}
+
+.quiz {
+  margin: 5px;
+  border-radius: 15px 15px 15px 15px;
+  font-family: "Orbitron", sans-serif;
+}
+
+.level {
+  font-family: "Orbitron", sans-serif;
+  color: #a3cf65;
+  font-weight: 500;
 }

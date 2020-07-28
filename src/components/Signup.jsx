@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import Dexter from "../images/dexter.gif";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -230,7 +231,6 @@ class Form extends Component {
                   Create Account
                 </button>
                 <Link onClick={this.hasLogin}>Click Here to Log In</Link>
-                <div>Animation</div>
               </div>
             </form>
           </div>

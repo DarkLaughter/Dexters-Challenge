@@ -13,6 +13,7 @@ class Search extends Component {
     border: "1px solid black",
     boxshadow: "1px 0.5px #888888",
     fontsize: "18px",
+    fontFamily: "Orbitron",
   };
 
   render() {
