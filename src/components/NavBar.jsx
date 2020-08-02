@@ -7,7 +7,8 @@ import Logo from "../images/dexterlogo.png";
 const Nav = styled.div`
   ul.nav {
     list-style-type: none;
-    margin: 10px;
+    width: 100%;
+    margin: 0px;
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -47,7 +48,7 @@ function NavBar(props) {
     return (
       <Nav>
         <ul className="nav">
-          <img src={Dexter} alt="" height="80px" />
+          <img src={Dexter} alt="Dexter" height="80px" />
           <img src={Logo} alt="Moogle" height="80px" />
           <li>
             <NavLink to="/profile">Profile</NavLink>

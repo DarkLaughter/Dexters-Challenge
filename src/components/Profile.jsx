@@ -21,9 +21,9 @@ const ProfileCard = styled.div`
 const StatCard = styled.div`
   margin: 20px;
   width: 700px;
-  height: 950px;
+  height: 1000px;
   display: flex;
-  flex-basis: 30%;
+  justify-content: center;
   flex-direction: column;
   border-radius: 10px;
   align-items: center;
@@ -50,6 +50,14 @@ class Profile extends Component {
     questionPercentage: 0,
     totalquestions: 0,
     avgtime: 0,
+    dnumquizzesrated: 0,
+    davg_qrating: 0,
+    dtotalqstaken: 0,
+    dtotalAnscorrect: 0,
+    dtotalAnsincorrect: 0,
+    dquestionPercentage: 0,
+    dtotalquestions: 0,
+    davgtime: 0,
   };
 
   handleUpdateSubmit = (e) => {
@@ -115,6 +123,15 @@ class Profile extends Component {
             questionPercentage: resp.user.questionPercentage,
             totalquestions: resp.user.totalquestions,
             avgtime: resp.user.avgTime,
+
+            dnumquizzesrated: resp.user.dnumquizzesrated,
+            davg_qrating: resp.user.avg_qrating,
+            dtotalqstaken: resp.user.dtotalqstaken,
+            dtotalAnscorrect: resp.user.dtotalAnscorrect,
+            dtotalAnsincorrect: resp.user.dtotalAnsincorrect,
+            dquestionPercentage: resp.user.dquestionPercentage,
+            dtotalquestions: resp.user.dtotalquestions,
+            davgtime: resp.user.davgTime,
           });
         });
     }
@@ -133,6 +150,14 @@ class Profile extends Component {
       questionPercentage,
       totalquestions,
       avgtime,
+      dnumquizzesrated,
+      davg_qrating,
+      dtotalqstaken,
+      dtotalAnscorrect,
+      dtotalAnsincorrect,
+      dquestionPercentage,
+      dtotalquestions,
+      davgtime,
     } = this.state;
     console.log(this.state);
     if (update) {
@@ -189,16 +214,28 @@ class Profile extends Component {
           </div>
           <StatCard>
             <div className="statsBox">
-              <h1>Your Current Stats</h1>
-              <h2>Quizzes</h2>
+              <h4>Your Current Stats</h4>
+              <h4>Mandark's Quiz</h4>
               <p>Total Number of Quizzes Taken: {totalqstaken}</p>
               <p>Total Correct Answers: {totalAnscorrect}</p>
               <p>Total Incorrect Answer: {totalAnsincorrect}</p>
               <p>Total Questions you've answered: {totalquestions}</p>
-              <p>Your Trivia Percentage is: {questionPercentage}</p>
-              <h2>Ratings</h2>
-              <p>You've rated {numquizzesrated} of quizzes</p>
-              <p>The average Rating you've given a quiz: {avg_qrating}</p>
+              <p>Avg Time Per Quiz: {avgtime} Seconds </p>
+              <p>Percentage of correct answers: {questionPercentage}% </p>
+              <h4>Rating's for Mandark's Quizzes</h4>
+              <p>You've rated {numquizzesrated} True or False</p>
+              <p>The average Rating you've given: {avg_qrating} Stars</p>
+
+              <h4>Dee Dee's True or False Quiz</h4>
+              <p>Total Number of True or False Taken: {dtotalqstaken}</p>
+              <p>Total Correct Answers: {dtotalAnscorrect}</p>
+              <p>Total Incorrect Answer: {dtotalAnsincorrect}</p>
+              <p>Total Questions you've answered: {dtotalquestions}</p>
+              <p>Avg Time Per True or False: {davgtime} Seconds </p>
+              <p>Percentage of correct answers: {dquestionPercentage}% </p>
+              <h4>Rating's for Dee Dee's True or False</h4>
+              <p>You've rated {dnumquizzesrated} of quizzes</p>
+              <p>The average Rating you've given is {davg_qrating}</p>
             </div>
           </StatCard>
         </div>
@@ -217,16 +254,27 @@ class Profile extends Component {
           </ProfileCard>
           <StatCard>
             <h4>Your Current Stats</h4>
-            <h5>Quizzes</h5>
+            <h4>Mandark's Quiz</h4>
             <p>Total Number of Quizzes Taken: {totalqstaken}</p>
             <p>Total Correct Answers: {totalAnscorrect}</p>
             <p>Total Incorrect Answer: {totalAnsincorrect}</p>
             <p>Total Questions you've answered: {totalquestions}</p>
             <p>Avg Time Per Quiz: {avgtime} Seconds </p>
-            <p>Trivia Answer Percentage is: {questionPercentage}% </p>
-            <h5>Ratings</h5>
-            <p>You've rated {numquizzesrated} of quizzes</p>
-            <p>The average Rating you've given a quiz: {avg_qrating}</p>
+            <p>Percentage of corect answers: {questionPercentage}% </p>
+            <h4>Rating's for Mandark's Quizzes</h4>
+            <p>You've rated {numquizzesrated} of Mandark's quizzes</p>
+            <p>The average Rating you've given: {avg_qrating} Stars</p>
+
+            <h4>Dee Dee's True or False Quiz</h4>
+            <p>Total Number of True or False Quizzes Taken: {dtotalqstaken}</p>
+            <p>Total Correct Answers: {dtotalAnscorrect}</p>
+            <p>Total Incorrect Answer: {dtotalAnsincorrect}</p>
+            <p>Total Questions you've answered: {dtotalquestions}</p>
+            <p>Avg Time Per True or False: {davgtime} Seconds </p>
+            <p>Percentage of corect answers:: {dquestionPercentage}% </p>
+            <h4>Rating's for Dee Dee's True or False</h4>
+            <p>You've rated {dnumquizzesrated} of True or False Quizzes</p>
+            <p>The average Rating you've given: {davg_qrating} Stars</p>
           </StatCard>
         </div>
       );

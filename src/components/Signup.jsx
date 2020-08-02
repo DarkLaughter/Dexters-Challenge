@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import Dexter from "../images/dexter.gif";
+import Squad from "../images/squad.jpg";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -159,7 +159,7 @@ class Form extends Component {
             )}
             <div className="createAccount">
               <button onClick={this.loginSubmit}>Log In </button>
-              <Link onClick={this.hasLogin}>Click to Sign Up</Link>
+              <Link onClick={this.hasLogin}>Click Here to Sign Up</Link>
             </div>
           </div>
         </div>

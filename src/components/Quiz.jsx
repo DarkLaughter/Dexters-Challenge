@@ -224,7 +224,7 @@ class Quiz extends React.Component {
         <QuizBody>
           <ResultsCapsule>
             <h3>Your final score is {this.state.score} points </h3>
-            <h3>Completed in: {this.state.count} seconds</h3>
+            <h3>Completed with: {this.state.count} seconds left</h3>
             <Next onClick={this.resultSubmit}>Back to Quizzes</Next>
             <img
               src="https://i.pinimg.com/originals/db/46/d0/db46d0bd791b36ebf5bc30fe5389f3c8.gif"

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import DeeDee from "../images/deedee.gif";
+import DJ from "../images/DJ.gif";
 
 // import Timer from "./Timer";
 
@@ -213,15 +214,11 @@ class Quiz extends React.Component {
       return (
         <QuizBody>
           <ResultsCapsule>
-            <h3>Great job! Your final score is {this.state.score} points </h3>
-            <h3>{this.state.count}</h3>
+            <h3>Great job! Your final score is {this.state.score}</h3>
+            <h3>Completed with: {this.state.count} seconds left</h3>
 
             <Next onClick={this.resultSubmit}>Back to True or False</Next>
-            <img
-              src="https://i.pinimg.com/originals/db/46/d0/db46d0bd791b36ebf5bc30fe5389f3c8.gif"
-              alt="Dexter"
-              width={500}
-            />
+            <img src={DJ} alt="Dexter" width={500} />
           </ResultsCapsule>
         </QuizBody>
       );

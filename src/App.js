@@ -9,10 +9,11 @@ import NotFound from "./components/NotFound";
 import styled from "styled-components";
 import DDContainer from "./DDComponents/DDContainer";
 import DDQuiz from "./DDComponents/DDQuiz";
+import Intro from "./components/Intro";
 
 const APP = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
