@@ -7,6 +7,7 @@ Data for questions is provided by the Open Trivia Database Api
 https://opentdb.com/api_config.php
 
 Backend for this app is built using a Rails api, with Postgres and active model serializers
+https://github.com/DarkLaughter/Dexters-Challenge-rails-api
 
 App contains 2 modes
 Mandark's Quiz which is multiple choice and contains 10 questions with a 90 second time limit
