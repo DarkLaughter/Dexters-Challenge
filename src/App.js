@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound";
 import styled from "styled-components";
 import DDContainer from "./DDComponents/DDContainer";
 import DDQuiz from "./DDComponents/DDQuiz";
-import Intro from "./components/Intro";
+
 
 const APP = styled.div`
   width: 100%;
