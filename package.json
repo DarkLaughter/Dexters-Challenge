@@ -12,9 +12,9 @@
     "react-component-countdown-timer": "^0.1.8",
     "react-dom": "^16.13.1",
     "react-rating-stars-component": "^2.2.0",
-    "react-responsive-animate-navbar": "^1.1.8",
+    "react-responsive-animate-navbar": "^1.0.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "react-simple-animate": "^3.3.10",
     "styled-components": "^5.2.0",
     "wowjs": "^1.1.3"
